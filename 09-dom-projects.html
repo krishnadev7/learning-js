@@ -9,6 +9,11 @@
     <p>Youtube Subscribe Button</p>
     <button class="subscribe-btn" onclick="subscribe()">Subscribe</button>
 
+    <p>Amazon Shipping Calculator</p>
+    <input type="number" placeholder="Cost of order" class="cost-input" onkeydown="handleKeydown(event)">
+    <button onclick="calculateTotal()">Calculate</button>
+    <p class="cost-total"></p>
+
     <script>
       function subscribe() {
         const buttonElement = document.querySelector(".subscribe-btn");
@@ -18,6 +23,25 @@
         } else {
           buttonElement.innerText = "Subscribe";
         }
+      }
+
+      function handleKeydown(event){
+        if(event.key === 'Enter'){
+          calculateTotal();
+        }
+      }
+
+      function calculateTotal() {
+        const inputElement = document.querySelector('.cost-input');
+        let cost = Number(inputElement.value);
+
+        if(cost < 40){
+          cost = cost + 10;
+        }
+
+        console.log(cost)
+
+        document.querySelector('.cost-total').innerHTML = `$ ${cost}`
       }
     </script>
   </body>
